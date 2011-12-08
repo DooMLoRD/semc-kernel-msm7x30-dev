@@ -4661,7 +4661,7 @@ static void __init msm7x30_map_io(void)
 static void __init msm7x30_fixup(struct machine_desc *desc, struct tag *tags,
 				 char **cmdline, struct meminfo *mi)
 {
-#define MSM_BANK0_BASE			PHYS_OFFSET
+#define MSM_BANK0_BASE			PLAT_PHYS_OFFSET
 #define MSM_BANK0_SIZE			0x03C00000
 
 #define MSM_BANK1_BASE			0x07400000
