@@ -73,10 +73,10 @@
 //#include "cpufreq.h"
 #include "board-semc_mogami-keypad.h"
 #include "board-semc_mogami-gpio.h"
-#include <linux/usb/android_composite.h>
-#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
-#include <linux/usb/f_accessory.h>
-#endif
+//#include <linux/usb/android_composite.h>
+//#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
+//#include <linux/usb/f_accessory.h>
+//#endif
 #include "pm.h"
 #include "spm.h"
 #include <linux/msm_kgsl.h>
@@ -1502,202 +1502,202 @@ static struct platform_device msm_device_adspdec = {
 };
 
 /* dynamic composition */
-static char *usb_functions_msc[] = {
-	"usb_mass_storage",
-};
+//static char *usb_functions_msc[] = {
+//	"usb_mass_storage",
+//};
 
-static char *usb_functions_msc_adb[] = {
-	"usb_mass_storage",
-	"adb",
-};
+//static char *usb_functions_msc_adb[] = {
+//	"usb_mass_storage",
+//	"adb",
+//};
 
-static char *usb_functions_msc_adb_eng[] = {
-	"usb_mass_storage",
-	"adb",
-	"modem",
-	"nmea",
-	"diag",
-};
+//static char *usb_functions_msc_adb_eng[] = {
+//	"usb_mass_storage",
+//	"adb",
+//	"modem",
+//	"nmea",
+//	"diag",
+//};
 
-#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
-static char *usb_functions_mtp[] = {
-	"mtp",
-};
+//#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
+//static char *usb_functions_mtp[] = {
+//	"mtp",
+//};
 
-static char *usb_functions_mtp_adb[] = {
-	"mtp",
-	"adb",
-};
+//static char *usb_functions_mtp_adb[] = {
+//	"mtp",
+//	"adb",
+//};
 
-static char *usb_functions_mtp_msc[] = {
-	"mtp",
-	"usb_mass_storage",
-};
+//static char *usb_functions_mtp_msc[] = {
+//	"mtp",
+//	"usb_mass_storage",
+//};
 
-static char *usb_functions_mtp_adb_eng[] = {
-	"mtp",
-	"adb",
-	"modem",
-	"nmea",
-	"diag",
-};
-#endif
+//static char *usb_functions_mtp_adb_eng[] = {
+//	"mtp",
+//	"adb",
+//	"modem",
+//	"nmea",
+//	"diag",
+//};
+//#endif
 
-static char *usb_functions_rndis[] = {
-	"rndis",
-};
+//static char *usb_functions_rndis[] = {
+//	"rndis",
+//};
 
-static char *usb_functions_rndis_adb[] = {
-	"rndis",
-	"adb",
-};
+//static char *usb_functions_rndis_adb[] = {
+//	"rndis",
+//	"adb",
+//};
 
-#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
-static char *usb_functions_accessory[] = { "accessory" };
-static char *usb_functions_accessory_adb[] = { "accessory", "adb" };
-#endif
+//#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
+//static char *usb_functions_accessory[] = { "accessory" };
+//static char *usb_functions_accessory_adb[] = { "accessory", "adb" };
+//#endif
 
-static char *usb_functions_all[] = {
-	"rndis",
-#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
-	"accessory",
-#endif
-	"usb_mass_storage",
-#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
-	"mtp",
-#endif
-	"adb",
-	"modem",
-	"nmea",
-	"diag",
-};
+//static char *usb_functions_all[] = {
+//	"rndis",
+//#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
+//	"accessory",
+//#endif
+//	"usb_mass_storage",
+//#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
+//	"mtp",
+//#endif
+//	"adb",
+//	"modem",
+//	"nmea",
+//	"diag",
+//};
 
-static struct android_usb_product usb_products[] = {
-	{
-		.product_id	= 0xE000 | CONFIG_USB_PRODUCT_SUFFIX,
-		.num_functions	= ARRAY_SIZE(usb_functions_msc),
-		.functions	= usb_functions_msc,
-	},
-	{
-		.product_id	= 0x6000 | CONFIG_USB_PRODUCT_SUFFIX,
-		.num_functions	= ARRAY_SIZE(usb_functions_msc_adb),
-		.functions	= usb_functions_msc_adb,
-	},
-#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
-	{
-		.product_id	= 0x0000 | CONFIG_USB_PRODUCT_SUFFIX,
-		.num_functions	= ARRAY_SIZE(usb_functions_mtp),
-		.functions	= usb_functions_mtp,
-	},
-	{
-		.product_id	= 0x5000 | CONFIG_USB_PRODUCT_SUFFIX,
-		.num_functions	= ARRAY_SIZE(usb_functions_mtp_adb),
-		.functions	= usb_functions_mtp_adb,
-	},
-	{
-		.product_id	= 0x4000 | CONFIG_USB_PRODUCT_SUFFIX,
-		.num_functions	= ARRAY_SIZE(usb_functions_mtp_msc),
-		.functions	= usb_functions_mtp_msc,
-	},
-#endif
-	{
-		.product_id	= 0x7000 | CONFIG_USB_PRODUCT_SUFFIX,
-		.num_functions	= ARRAY_SIZE(usb_functions_rndis),
-		.functions	= usb_functions_rndis,
-	},
-	{
-		.product_id	= 0x8000 |  CONFIG_USB_PRODUCT_SUFFIX,
-		.num_functions	= ARRAY_SIZE(usb_functions_rndis_adb),
-		.functions	= usb_functions_rndis_adb,
-	},
-#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
-	{
-		.product_id	= 0x5146,
-		.num_functions	= ARRAY_SIZE(usb_functions_mtp_adb_eng),
-		.functions	= usb_functions_mtp_adb_eng,
-	},
-#endif
-	{
-		.product_id	= 0x6146,
-		.num_functions	= ARRAY_SIZE(usb_functions_msc_adb_eng),
-		.functions	= usb_functions_msc_adb_eng,
-	},
-#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
-	{
-		.vendor_id      = USB_ACCESSORY_VENDOR_ID,
-		.product_id     = USB_ACCESSORY_PRODUCT_ID,
-		.num_functions  = ARRAY_SIZE(usb_functions_accessory),
-		.functions      = usb_functions_accessory,
-	},
-	{
-		.vendor_id      = USB_ACCESSORY_VENDOR_ID,
-		.product_id     = USB_ACCESSORY_ADB_PRODUCT_ID,
-		.num_functions  = ARRAY_SIZE(usb_functions_accessory_adb),
-		.functions      = usb_functions_accessory_adb,
-	},
-#endif
-};
+//static struct android_usb_product usb_products[] = {
+//	{
+//		.product_id	= 0xE000 | CONFIG_USB_PRODUCT_SUFFIX,
+//		.num_functions	= ARRAY_SIZE(usb_functions_msc),
+//		.functions	= usb_functions_msc,
+//	},
+//	{
+//		.product_id	= 0x6000 | CONFIG_USB_PRODUCT_SUFFIX,
+//		.num_functions	= ARRAY_SIZE(usb_functions_msc_adb),
+//		.functions	= usb_functions_msc_adb,
+//	},
+//#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
+//	{
+//		.product_id	= 0x0000 | CONFIG_USB_PRODUCT_SUFFIX,
+//		.num_functions	= ARRAY_SIZE(usb_functions_mtp),
+//		.functions	= usb_functions_mtp,
+//	},
+//	{
+//		.product_id	= 0x5000 | CONFIG_USB_PRODUCT_SUFFIX,
+//		.num_functions	= ARRAY_SIZE(usb_functions_mtp_adb),
+//		.functions	= usb_functions_mtp_adb,
+//	},
+//	{
+//		.product_id	= 0x4000 | CONFIG_USB_PRODUCT_SUFFIX,
+//		.num_functions	= ARRAY_SIZE(usb_functions_mtp_msc),
+//		.functions	= usb_functions_mtp_msc,
+//	},
+//#endif
+//	{
+//		.product_id	= 0x7000 | CONFIG_USB_PRODUCT_SUFFIX,
+//		.num_functions	= ARRAY_SIZE(usb_functions_rndis),
+//		.functions	= usb_functions_rndis,
+//	},
+//	{
+//		.product_id	= 0x8000 |  CONFIG_USB_PRODUCT_SUFFIX,
+//		.num_functions	= ARRAY_SIZE(usb_functions_rndis_adb),
+//		.functions	= usb_functions_rndis_adb,
+//	},
+//#if defined(CONFIG_USB_G_ANDROID_MTP_ARICENT)
+//	{
+//		.product_id	= 0x5146,
+//		.num_functions	= ARRAY_SIZE(usb_functions_mtp_adb_eng),
+//		.functions	= usb_functions_mtp_adb_eng,
+//	},
+//#endif
+//	{
+//		.product_id	= 0x6146,
+//		.num_functions	= ARRAY_SIZE(usb_functions_msc_adb_eng),
+//		.functions	= usb_functions_msc_adb_eng,
+//	},
+//#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
+//	{
+//		.vendor_id      = USB_ACCESSORY_VENDOR_ID,
+//		.product_id     = USB_ACCESSORY_PRODUCT_ID,
+//		.num_functions  = ARRAY_SIZE(usb_functions_accessory),
+//		.functions      = usb_functions_accessory,
+//	},
+//	{
+//		.vendor_id      = USB_ACCESSORY_VENDOR_ID,
+//		.product_id     = USB_ACCESSORY_ADB_PRODUCT_ID,
+//		.num_functions  = ARRAY_SIZE(usb_functions_accessory_adb),
+//		.functions      = usb_functions_accessory_adb,
+//	},
+//#endif
+//};
 
-static struct usb_mass_storage_platform_data mass_storage_pdata = {
-	.nluns = 1,
-	.vendor	= "SEMC",
-	.product = "Mass Storage",
-	.release = 0x0100,
+//static struct usb_mass_storage_platform_data mass_storage_pdata = {
+//	.nluns = 1,
+//	.vendor	= "SEMC",
+//	.product = "Mass Storage",
+//	.release = 0x0100,
+//
+//	.cdrom_nluns = 1,
+//	.cdrom_vendor = "SEMC",
+//	.cdrom_product = "CD-ROM",
+//	.cdrom_release = 0x0100,
+//
+//	/* EUI-64 based identifier format */
+//	.eui64_id = {
+//		.ieee_company_id = {0x00, 0x0A, 0xD9},
+//		.vendor_specific_ext_field = {0x00, 0x00, 0x00, 0x00, 0x00},
+//	},
+//};
 
-	.cdrom_nluns = 1,
-	.cdrom_vendor = "SEMC",
-	.cdrom_product = "CD-ROM",
-	.cdrom_release = 0x0100,
+//static struct platform_device usb_mass_storage_device = {
+//	.name = "usb_mass_storage",
+//	.id = -1,
+//	.dev = {
+//		.platform_data = &mass_storage_pdata,
+//		},
+//};
 
-	/* EUI-64 based identifier format */
-	.eui64_id = {
-		.ieee_company_id = {0x00, 0x0A, 0xD9},
-		.vendor_specific_ext_field = {0x00, 0x00, 0x00, 0x00, 0x00},
-	},
-};
+//static struct usb_ether_platform_data rndis_pdata = {
+//	/* ethaddr is filled by board_serialno_setup */
+//	.vendorID	= 0x0FCE,
+//	.vendorDescr	= "SEMC",
+//};
 
-static struct platform_device usb_mass_storage_device = {
-	.name = "usb_mass_storage",
-	.id = -1,
-	.dev = {
-		.platform_data = &mass_storage_pdata,
-		},
-};
+//static struct platform_device rndis_device = {
+//	.name	= "rndis",
+//	.id	= -1,
+//	.dev	= {
+//		.platform_data = &rndis_pdata,
+//	},
+//};
 
-static struct usb_ether_platform_data rndis_pdata = {
-	/* ethaddr is filled by board_serialno_setup */
-	.vendorID	= 0x0FCE,
-	.vendorDescr	= "SEMC",
-};
+//static struct android_usb_platform_data android_usb_pdata = {
+//	.vendor_id = 0x0FCE,
+//	.product_id	= 0xE000 | CONFIG_USB_PRODUCT_SUFFIX,
+//	.version = 0x0100,
+//	.product_name = "SEMC HSUSB Device",
+//	.manufacturer_name = "SEMC",
+//	.num_products = ARRAY_SIZE(usb_products),
+//	.products = usb_products,
+//	.num_functions = ARRAY_SIZE(usb_functions_all),
+//	.functions = usb_functions_all,
+//	/* .serial_number filled_in by board_serialno_setup */
+//};
 
-static struct platform_device rndis_device = {
-	.name	= "rndis",
-	.id	= -1,
-	.dev	= {
-		.platform_data = &rndis_pdata,
-	},
-};
-
-static struct android_usb_platform_data android_usb_pdata = {
-	.vendor_id = 0x0FCE,
-	.product_id	= 0xE000 | CONFIG_USB_PRODUCT_SUFFIX,
-	.version = 0x0100,
-	.product_name = "SEMC HSUSB Device",
-	.manufacturer_name = "SEMC",
-	.num_products = ARRAY_SIZE(usb_products),
-	.products = usb_products,
-	.num_functions = ARRAY_SIZE(usb_functions_all),
-	.functions = usb_functions_all,
-	/* .serial_number filled_in by board_serialno_setup */
-};
-
-static struct platform_device android_usb_device = {
-	.name = "android_usb",
-	.id = -1,
-	.dev = {
-		.platform_data = &android_usb_pdata,
-		},
-};
+//static struct platform_device android_usb_device = {
+//	.name = "android_usb",
+//	.id = -1,
+//	.dev = {
+//		.platform_data = &android_usb_pdata,
+//		},
+//};
 
 static int __init board_serialno_setup(char *serialno)
 {
@@ -3254,24 +3254,32 @@ static int hs_drv_ampl_ratio[] = {
 	HS_DRV_AMPLITUDE_5_PERCENT,
 	HS_DRV_AMPLITUDE_75_PERCENT,
 };
+static int hsusb_phy_init_seq[] = {
+	0x30, 0x32,
+	0x02, 0x36,
+	-1
+};
 
 static struct msm_otg_platform_data msm_otg_pdata = {
-	.rpc_connect = hsusb_rpc_connect,
-	.core_clk		= 1,
-	.vbus_power = msm_hsusb_vbus_power,
-	.pemp_level = PRE_EMPHASIS_WITH_20_PERCENT,
-	.cdr_autoreset = CDR_AUTO_RESET_DISABLE,
-	.drv_ampl = HS_DRV_AMPLITUDE_DEFAULT,
-	.se1_gating		= SE1_GATING_DISABLE,
-	.chg_vbus_draw		= hsusb_chg_vbus_draw,
-	.chg_connected		= hsusb_chg_connected,
-	.chg_init		= hsusb_chg_init,
-#ifdef CONFIG_CHARGER_BQ24185
-	.chg_is_initialized	= bq24185_charger_initialized,
-#endif
-#if defined(CONFIG_CHARGER_BQ24185) && defined(CONFIG_USB_MSM_OTG_72K)
-	.vbus_drawable_ida	= USB_IDCHG_MAX,
-#endif
+	.phy_init_seq	= hsusb_phy_initseq,
+	.mode		= USB_PERIPHERIAL,
+	.otg_control	= OTG_PHY_CONTROL,
+//	.rpc_connect = hsusb_rpc_connect,
+//	.core_clk		= 1,
+//	.vbus_power = msm_hsusb_vbus_power,
+//	.pemp_level = PRE_EMPHASIS_WITH_20_PERCENT,
+//	.cdr_autoreset = CDR_AUTO_RESET_DISABLE,
+//	.drv_ampl = HS_DRV_AMPLITUDE_DEFAULT,
+//	.se1_gating		= SE1_GATING_DISABLE,
+//	.chg_vbus_draw		= hsusb_chg_vbus_draw,
+//	.chg_connected		= hsusb_chg_connected,
+//	.chg_init		= hsusb_chg_init,
+//#ifdef CONFIG_CHARGER_BQ24185
+//	.chg_is_initialized	= bq24185_charger_initialized,
+//#endif
+//#if defined(CONFIG_CHARGER_BQ24185) && defined(CONFIG_USB_MSM_OTG_72K)
+//	.vbus_drawable_ida	= USB_IDCHG_MAX,
+//#endif
 };
 
 #ifdef CONFIG_FB_MSM_HDMI_SII9024A_PANEL
@@ -3773,10 +3781,14 @@ static struct platform_device *devices[] __initdata = {
 	&msm_device_dmov,
 	&msm_device_nand,
 	&msm_device_otg,
-	&msm_device_gadget_peripheral,
-	&usb_mass_storage_device,
-	&rndis_device,
-	&android_usb_device,
+	&msm_device_hsusb,
+	&msm_device_hsusb_host,
+
+//	&msm_device_gadget_peripheral,
+//	&usb_mass_storage_device,
+//	&rndis_device,
+//	&android_usb_device,
+
 	&qsd_device_spi,
 	&msm_device_ssbi6,
 	&msm_device_ssbi7,
@@ -4427,17 +4439,16 @@ static void __init msm7x30_init(void)
 	msm_spm_init(&msm_spm_data, 1);
 //	msm_acpu_clock_init(&msm7x30_clock_data);
 
-	hsusb_chg_set_supplicants(hsusb_chg_supplied_to,
-				  ARRAY_SIZE(hsusb_chg_supplied_to));
-	if (0 <= CONFIG_USB_HS_DRV_AMPLITUDE ||
-		CONFIG_USB_HS_DRV_AMPLITUDE < ARRAY_SIZE(hs_drv_ampl_ratio))
-		msm_otg_pdata.drv_ampl =
-			hs_drv_ampl_ratio[CONFIG_USB_HS_DRV_AMPLITUDE];
+	hsusb_chg_set_supplicants(hsusb_chg_supplied_to, ARRAY_SIZE(hsusb_chg_supplied_to));
+	if (0 <= CONFIG_USB_HS_DRV_AMPLITUDE || CONFIG_USB_HS_DRV_AMPLITUDE < ARRAY_SIZE(hs_drv_ampl_ratio))
+		msm_otg_pdata.drv_ampl = hs_drv_ampl_ratio[CONFIG_USB_HS_DRV_AMPLITUDE];
+
 	msm_device_otg.dev.platform_data = &msm_otg_pdata;
-	msm_otg_pdata.swfi_latency =
-	    msm_pm_data
-	    [MSM_PM_SLEEP_MODE_RAMP_DOWN_AND_WAIT_FOR_INTERRUPT].latency;
-	msm_device_gadget_peripheral.dev.platform_data = &msm_gadget_pdata;
+	msm_device_hsusb.dev.parent = &msm_device_otg.dev;
+	msm_device_hsusb_host.dev.parent = &msm_device_otg.dev;
+	
+//	msm_otg_pdata.swfi_latency =  msm_pm_data [MSM_PM_SLEEP_MODE_RAMP_DOWN_AND_WAIT_FOR_INTERRUPT].latency;
+//	msm_device_gadget_peripheral.dev.platform_data = &msm_gadget_pdata;
 
 	msm_uart_dm1_pdata.wakeup_irq = gpio_to_irq(136);
 	msm_device_uart_dm1.dev.platform_data = &msm_uart_dm1_pdata;
