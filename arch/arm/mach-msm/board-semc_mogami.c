@@ -4685,7 +4685,7 @@ static void __init msm7x30_fixup(struct machine_desc *desc, struct tag *tags,
 
 MACHINE_START(SEMC_MOGAMI, "mogami")
 	.fixup = msm7x30_fixup,
-	.boot_params = PHYS_OFFSET + 0x100,
+	.boot_params = PLAT_PHYS_OFFSET + 0x100,
 	.map_io = msm7x30_map_io,
 	.init_irq = msm7x30_init_irq,
 	.init_machine = msm7x30_init,
