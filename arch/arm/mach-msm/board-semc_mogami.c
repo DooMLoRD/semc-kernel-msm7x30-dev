@@ -42,13 +42,14 @@
 
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
+#include <asm/memory.h>
 #include <asm/setup.h>
 
 #include <mach/mpp.h>
 #include <mach/gpio.h>
 #include <mach/board.h>
 #include <mach/camera.h>
-#include <mach/memory.h>
+//#include <mach/memory.h>
 #include <mach/msm_iomap.h>
 //#include <mach/msm_hsusb.h>
 #include <mach/rpc_hsusb.h>
