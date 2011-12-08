@@ -50,7 +50,7 @@
 #include <mach/camera.h>
 #include <mach/memory.h>
 #include <mach/msm_iomap.h>
-#include <mach/msm_hsusb.h>
+//#include <mach/msm_hsusb.h>
 #include <mach/rpc_hsusb.h>
 #include <mach/msm_spi.h>
 #include <mach/qdsp5v2/msm_lpa.h>
@@ -69,8 +69,8 @@
 #include <asm/mach/flash.h>
 #include "devices.h"
 #include "timer.h"
-#include "socinfo.h"
-#include "cpufreq.h"
+//#include "socinfo.h"
+//#include "cpufreq.h"
 #include "board-semc_mogami-keypad.h"
 #include "board-semc_mogami-gpio.h"
 #include <linux/usb/android_composite.h>
@@ -147,6 +147,8 @@
 #include <linux/battery_chargalg.h>
 
 #include <linux/wl12xx.h>
+#include "proc_comm.h"
+
 
 #define BQ24185_GPIO_IRQ		(31)
 #define CYPRESS_TOUCH_GPIO_RESET	(40)
@@ -244,6 +246,8 @@
 static const u8 hw_id_gpios[] = {150, 149, 148, 43};
 
 extern void msm_init_pmic_vibrator(void);
+
+extern struct sys_timer msm_timer;
 
 static int vreg_helper_on(const char *pzName, unsigned mv)
 {
@@ -4552,8 +4556,8 @@ static void __init shared_vreg_on(void)
 
 static void __init msm7x30_init(void)
 {
-	if (socinfo_init() < 0)
-		printk(KERN_ERR "%s: socinfo_init() failed!\n", __func__);
+//	if (socinfo_init() < 0)
+//		printk(KERN_ERR "%s: socinfo_init() failed!\n", __func__);
 
 	wlan_init_seq();
 
@@ -4564,7 +4568,7 @@ static void __init msm7x30_init(void)
 	msm7x30_init_uart3();
 
 	msm_spm_init(&msm_spm_data, 1);
-	msm_acpu_clock_init(&msm7x30_clock_data);
+//	msm_acpu_clock_init(&msm7x30_clock_data);
 
 	hsusb_chg_set_supplicants(hsusb_chg_supplied_to,
 				  ARRAY_SIZE(hsusb_chg_supplied_to));
@@ -4776,12 +4780,12 @@ static void __init msm7x30_allocate_memory_regions(void)
 
 static void __init msm7x30_map_io(void)
 {
-	msm_shared_ram_phys = 0x00100000;
+//	msm_shared_ram_phys = 0x00100000;
 	msm_map_msm7x30_io();
 #ifdef CONFIG_ANDROID_RAM_CONSOLE
 	ram_console_reserve_mem();
 #endif
-	msm7x30_allocate_memory_regions();
+//	msm7x30_allocate_memory_regions();
 }
 
 static void __init msm7x30_fixup(struct machine_desc *desc, struct tag *tags,
