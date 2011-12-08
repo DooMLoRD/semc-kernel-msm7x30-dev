@@ -16,5 +16,5 @@
 #include "z180_reg.h"
 
 /* Instantiate tracepoints */
-#define CREATE_TRACE_POINTS
-#include "z180_trace.h"
+//#define CREATE_TRACE_POINTS
+//#include "z180_trace.h"

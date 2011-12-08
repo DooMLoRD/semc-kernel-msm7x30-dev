@@ -408,6 +408,14 @@ config MACH_MSM7X30_SURF
        help
          Support for the Qualcomm MSM7x30 SURF eval board.
 
+config MACH_SEMC_HALLON
+       depends on ARCH_MSM7X30
+       depends on !MSM_STACKED_MEMORY
+       default y
+       bool "SEMC_HALLON"
+       help
+         Support for the SEMC Hallon board.
+
 config MACH_MSM7X30_FFA
        depends on ARCH_MSM7X30
        depends on !MSM_STACKED_MEMORY

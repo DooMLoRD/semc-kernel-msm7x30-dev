@@ -18,7 +18,7 @@
 
 #include "z180.h"
 #include "z180_reg.h"
-#include "z180_trace.h"
+//#include "z180_trace.h"
 
 #define DRIVER_VERSION_MAJOR   3
 #define DRIVER_VERSION_MINOR   1
@@ -214,7 +214,7 @@ static irqreturn_t z180_isr(int irq, void *data)
 
 	z180_regread(device, ADDR_VGC_IRQSTATUS >> 2, &status);
 
-	trace_kgsl_z180_irq_status(device, status);
+//	trace_kgsl_z180_irq_status(device, status);
 
 	if (status & GSL_VGC_INT_MASK) {
 		z180_regwrite(device,
