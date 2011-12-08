@@ -51,7 +51,8 @@
 #include <mach/camera.h>
 //#include <mach/memory.h>
 #include <mach/msm_iomap.h>
-//#include <mach/msm_hsusb.h>
+#include <mach/msm_hsusb.h>
+#include <linux/clkdev.h>
 #include <mach/rpc_hsusb.h>
 #include <mach/msm_spi.h>
 #include <mach/qdsp5v2/msm_lpa.h>
