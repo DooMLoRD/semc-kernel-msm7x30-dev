@@ -31,6 +31,7 @@
 #include <linux/i2c.h>
 #include <linux/cyttsp.h>
 #include "cyttsp_core.h"
+#include <linux/slab.h>
 
 #define DBG(x)
 

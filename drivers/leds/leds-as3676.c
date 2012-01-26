@@ -17,6 +17,7 @@
 #include <linux/earlysuspend.h>
 #endif
 #include <linux/delay.h>
+#include <linux/slab.h>
 
 #define AS3676_NAME "as3676"
 

@@ -23,6 +23,7 @@
 #include <linux/gpio.h>
 
 #include <linux/input/kp_flip_switch.h>
+#include <linux/slab.h>
 
 struct flip_switch {
 	struct input_dev *input;

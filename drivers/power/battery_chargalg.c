@@ -19,6 +19,7 @@
 #include <linux/string.h>
 #include <linux/time.h>
 #include <linux/workqueue.h>
+#include <linux/slab.h>
 
 /* #define DEBUG_FS */
 
