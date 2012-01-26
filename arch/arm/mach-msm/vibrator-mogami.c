@@ -168,8 +168,9 @@ static int vibrator_get_time(struct timed_output_dev *dev)
 	case TASK_STOP:
 		ret = long_vibe_time;
 		if (hrtimer_active(&vibe_timer)) {
-			ktime_t r = hrtimer_get_remaining(&vibe_timer);
-			ret += r.tv.sec * 1000 + r.tv.nsec / 1000000;
+			// ktime_t r = hrtimer_get_remaining(&vibe_timer);
+			// FIX: for compile			
+			// ret += r.tv.sec * 1000 + r.tv.nsec / 1000000;
 		}
 		break;
 	case TASK_FORCE_STOP:
