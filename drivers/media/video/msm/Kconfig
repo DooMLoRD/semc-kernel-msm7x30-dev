@@ -37,6 +37,29 @@ config IMX074
 	default y
 	---help---
 	SONY 13.5 MP Bayer Sensor
+
+config SEIX006
+    bool "Sensor sexi006"
+    depends on MSM_CAMERA
+    default y
+    ---help---
+      This is a camera driver for the sexi006 sensor
+          
+config OVM7692
+    bool "Sensor ovm7692"
+	depends on MSM_CAMERA
+	---help---
+	  Omnivision VGA fixed focus sensor
+
+config MT9V114
+    bool "Sensor mt9v114"
+	depends on MSM_CAMERA
+	---help---
+	  AAC/Heptagon VGA fixed focus sensor
+#	Used as front sensor
+#	Uses parallel interface
+#	Previously known as Hydrogen
+
 config OV5640
 	bool "Sensor OV5640 (YUV 5M)"
 	depends on MSM_CAMERA && !MSM_CAMERA_V4L2
@@ -173,6 +196,20 @@ config VB6801
 	depends on MSM_CAMERA && !ARCH_MSM8X60 && !MSM_CAMERA_V4L2
 	---help---
 	  5M with flash
+
+config SEMC_CAMERA_MODULE
+	bool "SEMC specific camera (Main camera)"
+	depends on MSM_CAMERA
+	default y
+	---help---
+	  SEMC specific camera module
+
+config SEMC_SUB_CAMERA_MODULE
+	bool "SEMC specific camera (Sub camera)"
+	depends on MSM_CAMERA
+	default y
+	---help---
+	  SEMC specific sub camera module
 
 config MSM_CAMERA_FLASH
 	bool "Qualcomm MSM camera flash support"
