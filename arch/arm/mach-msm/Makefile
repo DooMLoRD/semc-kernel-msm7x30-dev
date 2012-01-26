@@ -327,3 +327,23 @@ obj-$(CONFIG_ARCH_MSM7X27A) += board-msm7x27a-regulator.o
 endif
 
 obj-$(CONFIG_ARCH_MSM8960) += mdm2.o mdm_common.o
+
+obj-$(CONFIG_MSM7200A_TLMM)	+= tlmm-msm7200a.o
+obj-$(CONFIG_MSM8660_TLMM)	+= tlmm-msm8660.o msm8660-gpio.o
+obj-$(CONFIG_SEMC_RPC_SERVER_HANDSET) += semc_rpc_server_handset.o
+obj-$(CONFIG_ARCH_MSM7X27)	+= gpiomux.o gpiomux-7x00.o gpiomux-7x27.o
+
+obj-$(CONFIG_ARCH_QSD8X50)	+= gpiomux.o gpiomux-7x00.o gpiomux-8x50.o
+obj-$(CONFIG_ARCH_MSM8X60)	+= gpiomux.o gpiomux-8x60.o
+
+ifdef CONFIG_MSM_RPC_OEM_RAPI
+	obj-$(CONFIG_BATTERY_SEMC_ARCH)	+= semc_battery_data.o
+endif
+
+ifdef CONFIG_ARCH_MSM7X30
+	obj-$(CONFIG_SIMPLE_REMOTE_PLATFORM) += simple_remote_msm7x30_pf.o
+endif
+
+obj-$(CONFIG_PMIC_TIME) += pmic_time.o
+
+obj-$(CONFIG_SEMC_MOGAMI_FELICA_SUPPORT) += semc_mogami_felica.o
