@@ -1,0 +1,12 @@
+>>> correct test defconfig
+
+>>> add various semc specific drivers:
+>>>>>> battery [done]
+>>>>>> TS [done]
+>>>>>> led [done]
+>>>>>> sensors [done]
+>>>>>> camera [done]
+>>>>>> kgsl
+
+>>> correct board file
+
