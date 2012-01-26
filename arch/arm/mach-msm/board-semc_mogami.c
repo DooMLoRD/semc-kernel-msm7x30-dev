@@ -69,7 +69,7 @@
 #include <asm/mach/flash.h>
 #include "devices.h"
 #include "timer.h"
-#include "socinfo.h"
+#include <mach/socinfo.h>
 #include "cpufreq.h"
 #include "board-semc_mogami-keypad.h"
 #include "board-semc_mogami-gpio.h"
