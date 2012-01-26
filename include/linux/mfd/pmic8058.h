@@ -102,6 +102,8 @@
 #define PM8058_CBLPWR_IRQ		PM8058_IRQ_BLOCK_BIT(4, 3)
 #define PM8058_RESOUT_IRQ		PM8058_IRQ_BLOCK_BIT(6, 4)
 
+struct pm8058_chip;
+
 struct pmic8058_charger_data {
 	unsigned int max_source_current;
 	int charger_type;
@@ -145,6 +147,32 @@ struct pm8058_platform_data {
 };
 
 #ifdef CONFIG_PMIC8058
+
+struct pm8058_gpio {
+	int		direction;
+	int		output_buffer;
+	int		output_value;
+	int		pull;
+	int		vin_sel;	/* 0..7 */
+	int		out_strength;
+	int		function;
+	int		inv_int_pol;	/* invert interrupt polarity */
+};
+
+/* chip revision */
+#define PM_8058_REV_1p0			0xE1
+#define PM_8058_REV_2p0			0xE2
+#define PM_8058_REV_2p1			0xE3
+
+int pm8058_read(struct pm8058_chip *pm_chip, u16 addr, u8 *values,
+		unsigned int len);
+int pm8058_write(struct pm8058_chip *pm_chip, u16 addr, u8 *values,
+		 unsigned int len);
+
+int pm8058_gpio_config(int gpio, struct pm8058_gpio *param);
+
+int pm8058_rev(struct pm8058_chip *pm_chip);
+
 int pm8058_reset_pwr_off(int reset);
 #else
 static inline int pm8058_reset_pwr_off(int reset) { return 0; }
