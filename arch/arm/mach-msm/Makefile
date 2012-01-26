@@ -215,7 +215,9 @@ obj-$(CONFIG_MACH_MSM7X27A_RUMI3) += board-msm7x27a.o
 obj-$(CONFIG_MACH_MSM7X27A_SURF) += board-msm7x27a.o
 obj-$(CONFIG_MACH_MSM7X27A_FFA) += board-msm7x27a.o
 obj-$(CONFIG_MACH_MSM7627A_QRD1) += board-qrd7627a.o
-obj-$(CONFIG_ARCH_MSM7X30) += board-msm7x30.o devices-msm7x30.o memory_topology.o clock-local.o clock-7x30.o acpuclock-7x30.o
+obj-$(CONFIG_ARCH_MSM7X30) += devices-msm7x30.o 
+obj-$(CONFIG_ARCH_MSM7X30) += memory_topology.o 
+obj-$(CONFIG_ARCH_MSM7X30) += clock-local.o clock-7x30.o acpuclock-7x30.o
 
 obj-$(CONFIG_MACH_SEMC_ZEUS) += board-semc_zeus.o
 obj-$(CONFIG_MACH_SEMC_MOGAMI) += board-semc_mogami.o board-semc_mogami-rfkill.o keypad-mogami_cdb.o leds-mogami_cdb.o gpio-mogami_cdb.o charger-mogami_cdb.o board-semc_mogami-wifi.o
