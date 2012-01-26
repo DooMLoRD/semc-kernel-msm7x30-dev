@@ -1928,6 +1928,10 @@ config HAS_QDSS
 	help
 	 Select this if the chip has Qualcomm Debug Subsystem implemented.
 
+config USB_PRODUCT_SUFFIX
+	hex "Suffix of USB product id"
+	default 0
+
 config MSM_DEBUG_ACROSS_PC
 	bool "Debug support across power collapse"
 	help
