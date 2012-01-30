@@ -83,6 +83,7 @@ static inline int hsusb_chg_init(int connect) { return 0; }
 static inline void hsusb_chg_vbus_draw(unsigned mA) { }
 static inline void hsusb_chg_connected(enum chg_type chgtype) { }
 #endif
+static inline unsigned int hsusb_get_chg_current_ma(void) { return 0; }
 
 static inline int msm_fsusb_rpc_init(struct msm_otg_ops *ops) { return 0; }
 static inline int msm_fsusb_init_phy(void) { return 0; }

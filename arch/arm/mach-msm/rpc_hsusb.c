@@ -595,6 +595,33 @@ int msm_hsusb_disable_pmic_ulpidata0(void)
 EXPORT_SYMBOL(msm_hsusb_disable_pmic_ulpidata0);
 
 
+struct hsusb_chg_state {
+	struct power_supply supply_usb;
+	struct power_supply supply_ac;
+	enum chg_type connected;
+	unsigned int usb_chg_current_ma;
+	struct mutex lock;
+};
+
+static struct hsusb_chg_state hsusb_chg_state = {
+	.supply_usb = {
+		.name = "hsusb_chg",
+		.type = POWER_SUPPLY_TYPE_USB,
+		.properties = hsusb_chg_props,
+		.num_properties = ARRAY_SIZE(hsusb_chg_props),
+		.get_property = hsusb_chg_get_property,
+	},
+	.supply_ac = {
+		.name = "ac",
+		.type = POWER_SUPPLY_TYPE_MAINS,
+		.properties = hsusb_chg_props,
+		.num_properties = ARRAY_SIZE(hsusb_chg_props),
+		.get_property = hsusb_chg_get_property,
+	},
+	.connected = USB_CHG_TYPE__INVALID,
+	.usb_chg_current_ma = 0,
+};
+
 /* wrapper for sending pid and serial# info to bootloader */
 int usb_diag_update_pid_and_serial_num(uint32_t pid, const char *snum)
 {
@@ -657,3 +684,15 @@ void hsusb_chg_connected(enum chg_type chgtype)
 }
 EXPORT_SYMBOL(hsusb_chg_connected);
 #endif
+
+unsigned int hsusb_get_chg_current_ma(void)
+{
+	unsigned int ma;
+
+	mutex_lock(&hsusb_chg_state.lock);
+	ma = hsusb_chg_state.usb_chg_current_ma;
+	mutex_unlock(&hsusb_chg_state.lock);
+
+	return ma;
+}
+EXPORT_SYMBOL(hsusb_get_chg_current_ma);
