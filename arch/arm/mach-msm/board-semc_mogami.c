@@ -683,10 +683,12 @@ static void __init set_pm8058_sub_devices(void)
 }
 
 static struct pm8058_platform_data pm8058_7x30_data = {
-	.irq_base = PMIC8058_IRQ_BASE,
-
-	.num_subdevs = ARRAY_SIZE(pm8058_subdevs),
-	.sub_devices = pm8058_subdevs,
+// NEED TO FIX THIS (check the structure "pm8058_platform_data" def in pmic8058.h)
+//	.irq_pdata = {
+//		.irq_base = PMIC8058_IRQ_BASE,
+//	},
+//	.num_subdevs = ARRAY_SIZE(pm8058_subdevs),
+//	.sub_devices = pm8058_subdevs,
 };
 
 static struct i2c_board_info pm8058_boardinfo[] __initdata = {
