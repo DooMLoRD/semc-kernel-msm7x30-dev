@@ -49,6 +49,7 @@
 #include "proc_comm.h"
 #include <linux/simple_remote.h>
 #include <mach/simple_remote_msm7x30_pf.h>
+#include <linux/slab.h>
 
 #define HEADSET_BUTTON_ID       0x84
 #define HEADSET_BUTTON_PRESS    0x00

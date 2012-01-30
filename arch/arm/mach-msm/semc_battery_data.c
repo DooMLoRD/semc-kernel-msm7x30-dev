@@ -19,6 +19,7 @@
 
 #include <mach/oem_rapi_client.h>
 #include <mach/semc_battery_data.h>
+#include <linux/slab.h>
 
 #define OEM_RAPI_RECONNECT_S 5
 
