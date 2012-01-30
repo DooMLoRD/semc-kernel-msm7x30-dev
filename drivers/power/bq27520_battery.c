@@ -813,7 +813,7 @@ unregister_rom:
 	return rc;
 }
 
-static ssize_t bq27520_fg_data_write(struct kobject *kobj,
+static ssize_t bq27520_fg_data_write(struct file *file, struct kobject *kobj,
 				     struct bin_attribute *bin_attr,
 				     char *buf, loff_t pos, size_t size)
 {
@@ -860,7 +860,7 @@ static ssize_t bq27520_fg_data_write(struct kobject *kobj,
 	return (retry > I2C_RETRY_MAX) ? -EPERM : offs;
 }
 
-static ssize_t bq27520_fg_data_read(struct kobject *kobj,
+static ssize_t bq27520_fg_data_read(struct file *file, struct kobject *kobj,
 				    struct bin_attribute *bin_attr,
 				    char *buf, loff_t pos, size_t size)
 
@@ -1888,7 +1888,7 @@ static int bq27520_pm_suspend(struct device *dev)
 
 	if (bd->got_technology &&
 		bd->technology != POWER_SUPPLY_TECHNOLOGY_UNKNOWN)
-		set_irq_wake(client->irq, 1);
+		irq_set_irq_wake(client->irq, 1);
 
 	flush_workqueue(bd->wq);
 
@@ -1903,7 +1903,7 @@ static int bq27520_pm_resume(struct device *dev)
 	bd->suspended = 0;
 	if (bd->got_technology &&
 		bd->technology != POWER_SUPPLY_TECHNOLOGY_UNKNOWN)
-		set_irq_wake(client->irq, 0);
+		irq_set_irq_wake(client->irq, 0);
 
 	if (bd->resume_int) {
 		bd->resume_int = 0;
