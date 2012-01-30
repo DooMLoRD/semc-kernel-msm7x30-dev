@@ -288,7 +288,7 @@ static void vreg_helper_off(const char *pzName)
 	printk(KERN_INFO "Disabled VREG \"%s\"\n", pzName);
 }
 
-static ssize_t hw_id_get_mask(struct class *class, char *buf)
+static ssize_t hw_id_get_mask(struct class *class, struct class_attribute *attr, char *buf)
 {
 
 	char hwid;
@@ -654,12 +654,12 @@ static struct mfd_cell pm8058_subdevs[] = {
 	[1].name = "pm8058-gpio",
 	[1].id = -1,
 	[1].platform_data = &pm8058_gpio_data,
-	[1].data_size = sizeof(pm8058_gpio_data),
+	[1].pdata_size = sizeof(pm8058_gpio_data),
 
 	[2].name = "pm8058-mpp",
 	[2].id = -1,
 	[2].platform_data = &pm8058_mpp_data,
-	[2].data_size = sizeof(pm8058_mpp_data),
+	[2].pdata_size = sizeof(pm8058_mpp_data),
 
 	[3].name = "pm8058-nfc",
 	[3].id = -1,
@@ -671,7 +671,7 @@ static struct mfd_cell pm8058_subdevs[] = {
 	[5].name = KP_NAME,
 	[5].platform_data = &keypad_pmic_platform_data,
 	[5].id = -1,
-	[5].data_size = sizeof(keypad_pmic_platform_data),
+	[5].pdata_size = sizeof(keypad_pmic_platform_data),
 #endif
 
 };
@@ -772,10 +772,11 @@ static void config_gpio_table(uint32_t *table, int len)
 	}
 }
 
-static void config_camera_on_gpios(void)
+static int config_camera_on_gpios(void)
 {
 	config_gpio_table(camera_on_gpio_table,
 			  ARRAY_SIZE(camera_on_gpio_table));
+	return 0;
 }
 
 static void config_camera_off_gpios(void)
@@ -2667,7 +2668,7 @@ static struct battery_regulation_vs_temperature id_bat_reg = {
 	/* Cold, Normal, Warm, Overheat */
 	{5, 45,		55,	127},	/* temp */
 	{0, 4200,	4000,	0},	/* volt */
-	{0, USHORT_MAX,	400,	0},	/* curr */
+	{0, USHRT_MAX,	400,	0},	/* curr */
 };
 
 /* Driver(s) to be notified upon change in algorithm */
