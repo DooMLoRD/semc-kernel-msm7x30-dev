@@ -24,13 +24,13 @@ static const unsigned int keymap[] = {
 
 static struct resource resources_keypad[] = {
 	{
-		.start	= PM8058_KEYPAD_IRQ(PMIC8058_IRQ_BASE),
-		.end	= PM8058_KEYPAD_IRQ(PMIC8058_IRQ_BASE),
+		.start	= PMIC8058_IRQ_BASE + PM8058_KEYPAD_IRQ,
+		.end	= PMIC8058_IRQ_BASE + PM8058_KEYPAD_IRQ,
 		.flags	= IORESOURCE_IRQ,
 	},
 	{
-		.start	= PM8058_KEYSTUCK_IRQ(PMIC8058_IRQ_BASE),
-		.end	= PM8058_KEYSTUCK_IRQ(PMIC8058_IRQ_BASE),
+		.start	= PMIC8058_IRQ_BASE + PM8058_KEYSTUCK_IRQ,
+		.end	= PMIC8058_IRQ_BASE + PM8058_KEYSTUCK_IRQ,
 		.flags	= IORESOURCE_IRQ,
 	},
 };
@@ -60,7 +60,7 @@ static struct mfd_cell keypad_dev = {
 	.num_resources	= ARRAY_SIZE(resources_keypad),
 	.resources	= resources_keypad,
 	.platform_data	= &keypad_data,
-	.data_size	= sizeof(keypad_data),
+	.pdata_size	= sizeof(keypad_data),
 };
 
 struct mfd_cell *get_pm8058_keypad_dev(void)
